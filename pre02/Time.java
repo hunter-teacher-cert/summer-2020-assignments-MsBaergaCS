@@ -10,7 +10,7 @@ public class Time {
     int timeSinceMid = secondCountMin + secondCountHour;
     int timeToMid = secondInDay - timeSinceMid;
     int newHour = 6;
-    int newMinute = 25;
+    int newMinute = 40;
     int newSecond = 00;
     double minutesOfDay = 24 * 60;
     double minutesPassed = newHour * 60 + newMinute;
@@ -27,7 +27,6 @@ public class Time {
     System.out.print(newSecond-second);
     System.out.print(" seconds, ");
     System.out.println("all well spent!");
-    System.out.println(minutesPassed);
-    System.out.println(percentOfDay);
+    System.out.print(percentOfDay + " has passed. Better get busy!");
   }
 }
