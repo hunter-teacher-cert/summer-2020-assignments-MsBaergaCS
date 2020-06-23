@@ -1,0 +1,92 @@
+public static void zoop() {
+    baffle();
+    System.out.print("You wugga ");
+    baffle();
+}
+
+public static void main(String[] args) {
+    System.out.print("No, I ");
+    zoop();
+    System.out.print("I ");
+    baffle();
+}
+
+public static void baffle() {
+    System.out.print("wug");
+    ping();
+}
+
+public static void ping() {
+    System.out.println(".");
+}
+
+
+1. Definitions: 
+
+The ping method  - when run it uses System.out.println to enter a period and then create a new line. 
+
+ping output: [period new line]
+.
+
+
+The baffle method - when run - prints out "wug" using the code: System.out.print("wug");  this does NOT create a new line after running, so whatever is printed next will be on the same line as "wug", because it uses System.out.print and not System.out.println.
+Then the baffle method runs the ping method when run it uses System.out.println to enter a period and then create a new line. This *does* create a new line afterwards. The effect is to start a new line. Whatever printed afterwards is on a new line.
+
+baffle output: [wug period new line]
+wug.
+
+The zoop method - uses baffle to print out "wug" using the code: System.out.print("wug");  this does NOT create a new line after running, so whatever is printed next will be on the same line as "wug", because it uses System.out.print and not System.out.println.
+Then the baffle method runs the ping method when run it uses System.out.println to enter a period and then create a new line. This *does* create a new line afterwards. The effect is to start a new line. Whatever printed afterwards is on a new line.
+Then it prints System.out.print("You wugga "); and does not create a new line.
+Then it uses baffle again, which results in "wug." being printed and a new line created.
+
+zoop output: [wug period new line, "You wugga " wug period new line]
+
+
+The output of the program is as follows: 
+
+No, I wug.
+You wugga wug.
+I wug.
+
+The reason for this is that main is run first. So, even though zoop method is before main, it is not called first. Instead, the first thing that occurs is main is run.
+
+Thus: when main is run:
+
+System.out.print prints out "No, I" and no new line is created.
+Then zoop method is called and the output of zoop adds "wug."(a combination of baffle's printing "wug" and ping adding a period and new line) On the same line as "No, I " and then creates a new line.
+zoop also adds on the new line "You wugga " and then runs baffle again (to add "wug." after but on the same line as "You wugga ", and then creates a new line).
+Finally, main continues to the third statement, which adds "I " (I with a space after) but does not create a new line aftewards.
+So when baffle is finally run again, (which adds "wug." after but on the same line as "I ", and then creates a new line)
+
+
+2. 
+            zoop	baffle		ping
+main runs 
+[No, I ] // using System.out.print in main
+//calls zoop
+	//calls baffle
+			[wug]//using System.out.print in baffle
+		        //calls ping
+		    			[.]
+		    			[\n]
+	//System.out.print "You wugga "
+	//calls baffle
+			[wug]//using System.out.print in baffle
+		        //calls ping
+		    			[.]
+		    			[\n]
+[I ]
+//calls baffle		
+			[wug]//using System.out.print in baffle
+		        //calls ping
+		    			[.]
+		    			[\n]
+
+
+
+3. If you mean if baffle is run inside the ping method? It's an error. 
+Error: Could not find or load main class test
+Caused by: java.lang.ClassNotFoundException: test	
+	
+
