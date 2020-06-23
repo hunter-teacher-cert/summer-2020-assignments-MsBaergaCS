@@ -1,5 +1,5 @@
-import java.util.Random; //import needed packages
-import java.util.Scanner;
+//import java.util.Random; //import needed packages
+//import java.util.Scanner;
 import java.util.*;
 import java.lang.*;
 
@@ -19,7 +19,7 @@ public class Guess {
     System.out.println("You guessed " + numberGuess);
     //output correct #
     System.out.println("The number was " + number);
-    //output difference btwn using absolute value to remove negative from #s
+    //output difference btwn using absolute value to remove negative from #
     System.out.println("You were off by " + Math.abs(numberGuess-number));
   }
 }
