@@ -24,7 +24,23 @@ public class Methods {
    }
 
  }
+
+ public static int ack (int ackOne, int ackTwo) {
+   int answer;
+   if (ackOne == 0) {
+     //System.out.println(ackTwo + 1);
+     return ackTwo + 1;
+   }
+  if (ackOne > 0 && ackTwo == 0) {
+    //System.out.println(ack(ackOne - 1, 1));
+    return (ack (ackOne - 1, 1));
+   }
+   //System.out.println(ack(ackOne - 1, ack (ackOne,ackTwo-1)));
+   return ack(ackOne - 1, ack (ackOne,ackTwo-1));
+ }
+
   public static void main(String[] args) {
+
     int numberDivFirst;
     int numberDivSecond;
     Scanner numberInput = new Scanner(System.in);
@@ -52,7 +68,17 @@ public class Methods {
     triNumThree = triInput3.nextInt();
 
     isTriangle (triNumOne, triNumTwo, triNumThree);
-    }
 
 
+    int ackOne;
+    int ackTwo;
+    Scanner ackInput1 = new Scanner(System.in);
+    Scanner ackInput2 = new Scanner(System.in);
+    System.out.println("Let's try the Ackermann function");
+    System.out.print("Enter the first number:");
+    ackOne = ackInput1.nextInt();
+    System.out.print("Enter the second number:");
+    ackTwo = ackInput2.nextInt();
+    ack( ackOne, ackTwo);
+  }
 }
