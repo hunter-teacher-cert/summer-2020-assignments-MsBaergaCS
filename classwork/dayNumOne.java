@@ -81,11 +81,13 @@ public class dayNumOne {
     2: down + left
     3: down + right
    */
+
+  // not woking
   public static void diagonal(int[][] a, int r, int c, int direction, int value) {
-    while ((c >= 0) && (r >=0) && (r < a.length) && (c < a.length)){
+    while ((c >= 0) && (r >=0) && (r < a.length) && (c < a[r].length)){
       a[r][c] = value;
       if (direction == 0) { //dirr up/left
-        r = r + 1;
+        r = r - 1;
         c = c - 1;
       }
       if (direction == 1){ //dir up/right
