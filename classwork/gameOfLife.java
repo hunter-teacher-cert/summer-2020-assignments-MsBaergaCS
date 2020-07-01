@@ -111,8 +111,28 @@ public static char [][] createBlankBoard (int rows, int cols) {
     // fill the new board
     return newBoard;
    }
+//not able to call
+  public static void animateBoard(char[][] board){
 
-
+    //send ANSI control char to clear terminal and put cursor top left
+      System.out.print("[0;0H\n");
+      for (int row = 0; row < board.length ; row++) {
+  	    for (int col = 0; col < board[row].length; col++) {
+          System.out.print(board[row][col]);
+  	    }
+  	    System.out.println();
+      }
+      delay(1000);
+    }
+    //helper method to slow down animation
+      public static void delay(int n)
+      {
+        try {
+            Thread.sleep(n);
+        }
+        catch(InterruptedException e) {}
+      }
+// not able to call
   public static void main(String[] args) {
     System.out.println("Welcome to Game of Life");
     char[][] newboard;
@@ -130,7 +150,7 @@ public static char [][] createBlankBoard (int rows, int cols) {
 
 
     //sets cells to 3 x's for blinking pattern test
-    setCell(newboard, 3, 3, 'X');
+  /*  setCell(newboard, 3, 3, 'X');
     setCell(newboard, 3, 4, 'X');
     setCell(newboard, 3, 5, 'X');
 
@@ -138,7 +158,7 @@ public static char [][] createBlankBoard (int rows, int cols) {
     printBoard(newboard);
     printBoard(generateNextBoard(newboard));
     printBoard(generateNextBoard(generateNextBoard(newboard)));
-
+*/
     //test neighbor count when it is on a living square
   //  System.out.println(countNeighbors(newboard, 3,5));
 
@@ -148,6 +168,27 @@ public static char [][] createBlankBoard (int rows, int cols) {
     //System.out.println(getNextGenCell(newboard, 3,5));
 
 
+    //init config to lead settle into stable oscillation of blinkers
+        setCell(newboard,10,10,'X');
+        setCell(newboard,10,9,'X');
+        setCell(newboard,10,11,'X');
+        setCell(newboard,9,10,'X');
+        setCell(newboard,11,10,'X');
+
+        //place glider at upper left
+        /*
+        setCell(board,0,1,'X');
+        setCell(board,1,2,'X');
+        setCell(board,2,0,'X');
+        setCell(board,2,1,'X');
+        setCell(board,2,2,'X');
+        */
+
+        //run for 100 "frames"
+        for( int i=0; i<100; i++ ) {
+          newboard = generateNextBoard(newboard);
+          animateBoard(newboard);
+        }
     //setCell(board, 3, 4, 'A');
     //printBoard(board);
     //setCell(board, 3, 3, 'Y');
