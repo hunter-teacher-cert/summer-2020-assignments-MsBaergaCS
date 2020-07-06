@@ -19,8 +19,8 @@ public static char [][] createNewBoard (int rows, int cols) {
   char[][] board = new char [rows][cols];
   for (int r = 0; r < rows; r++){
     for (int c = 0; c < cols; c++){
-      int sq = (int)(Math.random()*2 + 1);
-      if (sq == 2){
+      int sq = (int)(Math.random()*10 + 1);
+      if (sq < 2){
         board[r][c] = ' ';
       } else{
         board[r][c] = 'X';
@@ -189,6 +189,13 @@ public static char [][] createBlankBoard (int rows, int cols) {
           newboard = generateNextBoard(newboard);
           animateBoard(newboard);
         }
+/*
+        for( int i=0; i<100; i++ ) {
+          newboard = generateNextBoard(newboard);
+          printBoard(newboard);
+        } */
+
+
     //setCell(board, 3, 4, 'A');
     //printBoard(board);
     //setCell(board, 3, 3, 'Y');
