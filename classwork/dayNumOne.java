@@ -28,7 +28,7 @@ public class dayNumOne {
     print2d(arr);
     System.out.println();
 
-    diagonal(arr, 19, 19, 0, 1);
+    diagonal(arr, 19, 1, 1, 1);
 
     print2d(arr);
   } //end main
@@ -82,10 +82,10 @@ public class dayNumOne {
   3: down + right
   */
 
-  // not working needs revision
+  // working
   public static void diagonal(int[][] a, int r, int c, int direction, int value) {
-    while ((c >= 0) && (r >=0) && (r < a.length) && (c < a[r].length)){
-      if (direction == 0) { //dirr up/left
+    while ((c >= 0) && (r >=0) && (r < a.length) && (c < a[r].length)){ //oob check
+      if (direction == 0) { //dir up/left
         a[r][c] = value;
         r = r - 1;
         c = c - 1;
@@ -98,12 +98,12 @@ public class dayNumOne {
       if (direction == 2){ //dir down/left
         a[r][c] = value;
         r = r + 1;
-        c = c + 1;
+        c = c - 1;
       }
       if (direction == 3){ //dir down/right
         a[r][c] = value;
         r = r + 1;
-        c = c - 1;
+        c = c + 1;
       }
     } //end while loop
   }//end diagonal
