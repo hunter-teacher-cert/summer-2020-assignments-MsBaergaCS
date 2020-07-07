@@ -14,30 +14,38 @@ public class SuperArrayDriver
     System.out.println("Testing isEmpty (should be true)");
     System.out.println(sa.isEmpty());
 
+
+    //use add to fill list
     for (int i = 0; i < 9; i++){
       sa.add(i);
     }
-
+    //testing empty shld be false
     System.out.println(sa.isEmpty());
 
+    //printing current list
     System.out.println(sa.toString());
-
+    //testing overwrite ability
     sa.overWriteIndex(5,9);
 
+    //printing overwrite results
     System.out.println(sa.toString());
 
+    //testing add solo
     sa.add(11);
 
     System.out.println(sa.toString());
-
+    //testing addBetter - which should increase array size if need be
     sa.addBetter(12);
 
     System.out.println(sa.toString());
 
+    //TESTING remove
     sa.remove(5);
 
     System.out.println(sa.toString());
 
+
+    //testing find & replace
     sa.findReplace(2, 11);
 
     System.out.println("test findreplace print: ");

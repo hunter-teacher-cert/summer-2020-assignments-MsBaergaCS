@@ -142,10 +142,10 @@ public boolean isEmpty(){
     }
     data = newData;  //does this overwrite correctly removing the extra item space @ end?
                     //if not, no need for this extra loop, could remove 97-100
-                    //and could just jump from 95 to return data on 103.
+                     //and could just jump from 95 to return data on 103.
   }
 
-
+  //returns value data from given index position
   public int get(int index){
     return data[index];
   }
@@ -174,7 +174,7 @@ public boolean isEmpty(){
   }
   return s;
 }
-  //
+  //debugs i guess - never used it
   public String debug(){
     String s = "[";
     s = "Size: " + this.data.length;
