@@ -73,8 +73,8 @@ public boolean isEmpty(){
     if(numberElements == data.length){
       System.out.println("There's no room!");
     } else {
-    numberElements = numberElements + 1;
     data[numberElements] = value;
+    numberElements = numberElements + 1;
     }
     // add item
   }
@@ -82,12 +82,12 @@ public boolean isEmpty(){
   public void addBetter(int value){
     // test to see if we need to grow, then grow
     if(numberElements == data.length){
-      this.grow();
+      grow();
     }
     //add one more element to element count
     //use that to set next value on array
-    numberElements = numberElements + 1;
     data[numberElements] = value;
+    numberElements = numberElements + 1;
     }
 //replaces a specific item on list based on index
     public void overWriteIndex (int index, int value){
@@ -164,18 +164,16 @@ public boolean isEmpty(){
 
 //prints arrray
   public String toString(){
-    String s = "";
-    for (int i = 0; i < numberElements - 1; i++) {
-	    if (i<numberElements - 1) {
+    String s = " ";
+    for (int i = 0; i < numberElements; i++) {
+	    if (i< numberElements - 1) {
         s = s + data[i] + ", ";
-      }
-      if (i==numberElements - 1){
-        s = s + data[i] + ".";
-      }
+    } else {
+      s = s + data[i] + ".";
     }
-    return s;
   }
-
+  return s;
+}
   //
   public String debug(){
     String s = "[";
