@@ -7,7 +7,7 @@ public class LList {
   public LList(){
     this.head = null;
   }
-//adds new value to FRONT of list
+//adds new value to FRONT of list, pushes back
   public void addFront(String data){
      //create a new node, using node class, with data input as string
 	   Node newnode = new Node(data);
@@ -22,6 +22,8 @@ public class LList {
      length ++;
 
     }
+
+
 //adds data to end of linked list
     public void addEnd (String data){
       if(data == null) {
@@ -71,37 +73,39 @@ Node currentNode = head;
 } //end method
 
 
-//sets value of node at index to value
+//sets value of node at index to value and overwrites other value
 public void set(int index, String value) {
-
   Node currentNode = this.head; //starts at head
-  if (index == 0){
-    addFront(value);
-  } else if (index != 0 && index < length){
-    for (int i = 0; i < index; i++){ //crawls list until it hits specified index
+    for (int i = 0; i <= index; i++){ //crawls list until it hits specified index
+      if (i == index){
+        currentNode.setData(value);
+      } else {
       currentNode = currentNode.getNext();  //traverses list using getNext to crawl
-    } //end for loop
-    currentNode.setData(value); //upon reaching index, uses setData to
-  } //end if                        //change data to value specified
-  else {
-    addEnd(value);
-  }
-} //end method
+      } //upon reaching index, uses setData to
+  }                        //change data to value specifie
+}//end method
 
 public void insert(int index, String value){
+  Node newNode = new Node(value); //creates new node
   Node currentNode = head; //starts at head
-  if (index <= length){
-  for (int i = 0; i < index-1; i++){ //stops before index to insert
-    currentNode = currentNode.getNext();
-  }
-  Node newNode = new Node(value, currentNode.getNext()); //creates new node, using string value
- currentNode.setNext(newNode);    //and placing the current value's next node as next node of new node
-}                                   //sets currentNode's (the one before new index) next node to new node
-}
-
+  if (index <= length){ //checks that our index is greaterr
+    if (index == 0){ //checks if index is zero,
+      addFront(value); //if it is, uses addFront
+    } else { //if not
+      for (int i = 1; i <= index; i++){ //increments to index position
+        if (index == i){ //checks for index to be equal
+          newNode.setNext(currentNode.getNext()); //if so sets new node to current next node
+          currentNode.setNext(newNode); //sets current node next node to new node
+        } else { //if not equal, increments
+          currentNode = currentNode.getNext(); //sets current node to next
+        } //end else
+      } //end for loop
+    } //end else for if == 0 check
+  } //end if OOB check
+} //end method
 public void insert(Node node, int index){
-  if(index == 0){
-    addFront(node.getData());
+  if(index == 0){ //checks if index is 0
+    addFront(node.getData()); //if so uses fist
   } else {
     Node currentNode = head;
     for (int i = 0; i < index - 1; i++){ //stops before index to insert
@@ -133,15 +137,15 @@ public int search (String find){
 }
 
 public void remove (int index){
-  Node currentNode = head;
-  if (index == 0){
-    head = head.getNext();
-  } else {
+  Node currentNode = head; //begins at head
+  if (index == 0){ //if equal to zero
+    head = head.getNext(); //simply sets het to next node, ends.
+  } else { //if not ...
   for (int i = 0; i < index-1; i++){ //loops thru to 1 before index, to point to one after
-    currentNode = currentNode.getNext();
+    currentNode = currentNode.getNext(); //current node is now before index
   } //end of for loop
-  Node nextNode = currentNode.getNext();
-  currentNode.setNext(nextNode.getNext());
+  Node nextNode = currentNode.getNext(); //sets nextNode to node after index
+  currentNode.setNext(nextNode.getNext()); //sets current node to 
 } //end else
 } //end method
 
