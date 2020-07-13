@@ -42,4 +42,23 @@ public class MyOtherStack {
   public int stackSize() {
     return length;
   }
+//will return the character at index i in String s (0-based).
+
+/*public static String reverse(String s){
+  MyOtherStack rev =  new MyOtherStack();
+  String printRev = "";
+  for (int i = 0; i< s.length(); i++){
+    rev.push("" + s.charAt(i));
+  }
+  for (int i = 0; i < s.length(); i++){
+    printRev = printRev + "" + rev.pop();
+  }
+    return printRev;
 }
+
+public static boolean isPalendrome(String s){
+  return s.equals(reverse(s));
+}*/
+
+
+  }
