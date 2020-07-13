@@ -1,10 +1,10 @@
-public class LList {
+public class LList2 {
 
   //instance variable
   private Node head;
   private int length = 0; //tracks additions & removals
   //constructor
-  public LList(){
+  public LList2(){
     this.head = null;
   }
   //adds new value to FRONT of list, pushes back
