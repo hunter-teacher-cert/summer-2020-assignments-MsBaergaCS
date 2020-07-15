@@ -97,6 +97,7 @@ return al; //return sorted array
 
 //binary search using recursion, which uses two addit'l parameters to allow for the
 //recursive use of the method without needing to create a new list
+
   public static int binSearchRec ( ArrayList al, int target, int begin, int end){
     int mid = (begin + end)/2; //set mid point
     if (begin > end){ //if begin is higher then it hasn't been found
@@ -110,6 +111,7 @@ return al; //return sorted array
       //System.out.println(al.get(bin)+ " is less than " + target);
       return binSearchRec(al, target, begin, end); //call again
     } else if ((int)al.get(mid)>target){ //if target is less than, set to mid - 1
+
       end = mid - 1;
       return binSearchRec(al, target, begin,end); // call again
       //System.out.println(al.get(bin)+ " is greater than " + target);
@@ -206,33 +208,67 @@ return al; //return sorted array
     int size = tester.size();
     System.out.println("tester size is " + size);
     System.out.print("test binary search loc of 25 is 7 shld say: ");
+
+//test binary recursion
     System.out.println(binSearchRec(tester,25,0,8));
+
+    System.out.println("print tester searched \n ");
+      for (int i = 0; i < tester.size();i++)
+      {
+          System.out.println(tester.get(i));
+      }
+
+      System.out.println("mess up by adding 45 ");
 //mess up the tester sort
     tester.set(3,45);
 
 //print messed up tester
-    System.out.println("print tester \n ");
+    System.out.println("print tester with 45 \n ");
       for (int i = 0; i < tester.size();i++)
       {
           System.out.println(tester.get(i));
       }
 //test manual sort
+System.out.println("Use sort algorithm ");
     sortAlgorithm(tester);
 
 //println
-System.out.println("print tester \n ");
+System.out.println("print tester sorted \n ");
   for (int i = 0; i < tester.size();i++)
   {
       System.out.println(tester.get(i));
   }
 
 //use bin search recursive on new sort
-    System.out.println(binSearch(tester, 23,0,8));
-    System.out.println(binSearch(tester, 28,0,8));
+    System.out.println("print bin search iter shldnt find" + binSearch(tester, 23,0,8));
+    System.out.println("print bin search iter shld find " +binSearch(tester, 28,0,8));
 //
+
     sortAlgorithm(prestoArrayListo(10, 5, 20));
 
 
+//timing fun
+ArrayList timeTester = prestoArrayListo(100,5,200);
+            timeTester.set(45,100);
+            long nano_startTime = System.nanoTime();
+            long millis_startTime = System.currentTimeMillis();
+
+           // Perform the work whose time is to be measured
+
+        //   sortAlgorithm(timeTester);
+            //binSearch(timeTester,100,0,99); //takes less time
+            binSearchRec(timeTester,100,0,99);  //takes more time
+          //  System.out.println("steps counted "+ countBinRecSteps);
+           // Get the current system time in both
+           // nano and milli-seconds after
+           // the function returns.
+           long nano_endTime = System.nanoTime();
+           long millis_endTime = System.currentTimeMillis();
+
+           System.out.println("Time taken in nano seconds: "
+                              + (nano_endTime - nano_startTime));
+           System.out.println("Time taken in milli seconds: "
+                              + (millis_endTime - millis_startTime));
 
   //  binarySearchRec(tester, 18, 0, 6);
     /*~~~~v~~~~~~move~me~down~~~1~block~at~a~time~~~~~~~~~~v~~~~
