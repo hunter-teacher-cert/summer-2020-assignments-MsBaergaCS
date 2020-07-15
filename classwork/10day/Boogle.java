@@ -65,24 +65,53 @@ public static int binSearchHelp (ArrayList al, int target){
     }//end else
   }//end method
 
+public static ArrayList sortAlgorithm(ArrayList al){
+  ArrayList<Integer> tester = new ArrayList<Integer>();
+  for (int i = 0; i < al.size()-1; i++){
+    for (int j = i + 1; j < al.size(); j++){
+      if ((int)al.get(i)>(int)al.get(j)){
+        int holder = (int)al.get(j);
+        al.set(j,(int)al.get(i));
+        al.set(i, holder);
+    } //end if
+  } //end inner for
+} //end outer for
+return al; //return sorted array
+} //end method
+
+/*public String toString(ArrayList al){
+    String s = "*"; //opening of list
+    int i = 0;
+    while (i < al.size()-1){
+      s = s + al.get(i)+"-->"; //adds s and arrow between to previous s variable
+      // how can we now move tmp to the next node
+      // this is the magic linked list idiom!!!!
+      // this moves a pointer to the next node!!!
+      // It's analagous to i=i+1 for an array (for loop)
+      i++;
+    }
+    s = s + "*"; //closing list
+    return s;
+  }
+*/
 
 //binary search using recursion, which uses two addit'l parameters to allow for the
 //recursive use of the method without needing to create a new list
   public static int binSearchRec ( ArrayList al, int target, int begin, int end){
-    int mid = (begin + end)/2;
-    if (begin > end){
+    int mid = (begin + end)/2; //set mid point
+    if (begin > end){ //if begin is higher then it hasn't been found
       return - 1;
     }
-    if (al.get(mid).equals(target)){
+    if (al.get(mid).equals(target)){  //if it is equal, return index
       return mid;
     }
-    if ((int)al.get(mid)<target){
+    if ((int)al.get(mid)<target){ //if target is greater than, set to mid + 1
       begin = mid + 1;
       //System.out.println(al.get(bin)+ " is less than " + target);
-      return binSearchRec(al, target, begin, end);
-    } else if ((int)al.get(mid)>target){
+      return binSearchRec(al, target, begin, end); //call again
+    } else if ((int)al.get(mid)>target){ //if target is less than, set to mid - 1
       end = mid - 1;
-      return binSearchRec(al, target, begin,end);
+      return binSearchRec(al, target, begin,end); // call again
       //System.out.println(al.get(bin)+ " is greater than " + target);
     }
     return -1;
@@ -155,11 +184,12 @@ public static int binSearchHelp (ArrayList al, int target){
     }
 
     return retArr;
-  }//end prestoSortedArrayListo()
+  //end prestoSortedArrayListo()
+
+}
+  public static void main(String[] args) {
 
 
-  public static void main( String[] args )
-  {
 
     ArrayList<Integer> tester = new ArrayList<Integer>();
     tester.add(1);
@@ -172,8 +202,36 @@ public static int binSearchHelp (ArrayList al, int target){
     tester.add(25);
     tester.add(28);
     tester.add(29);
-    System.out.println(tester.size());
+
+    int size = tester.size();
+    System.out.println("tester size is " + size);
+    System.out.print("test binary search loc of 25 is 7 shld say: ");
     System.out.println(binSearchRec(tester,25,0,8));
+//mess up the tester sort
+    tester.set(3,45);
+
+//print messed up tester
+    System.out.println("print tester \n ");
+      for (int i = 0; i < tester.size();i++)
+      {
+          System.out.println(tester.get(i));
+      }
+//test manual sort
+    sortAlgorithm(tester);
+
+//println
+System.out.println("print tester \n ");
+  for (int i = 0; i < tester.size();i++)
+  {
+      System.out.println(tester.get(i));
+  }
+
+//use bin search recursive on new sort
+    System.out.println(binSearch(tester, 23,0,8));
+    System.out.println(binSearch(tester, 28,0,8));
+//
+    sortAlgorithm(prestoArrayListo(10, 5, 20));
+
 
 
   //  binarySearchRec(tester, 18, 0, 6);
