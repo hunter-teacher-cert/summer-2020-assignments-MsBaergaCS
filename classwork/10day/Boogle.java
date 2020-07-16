@@ -20,11 +20,11 @@ public class Boogle
 {
 
   //return index of first occurence of target, or -1 if not found
-  public static int linSearch( ArrayList al, int target )
+  public static int linSearch( ArrayList al, int target, int start, int end)
   {
-    for( int pos=0; pos<al.size(); pos++) {
-      if (al.get(pos).equals(target))
-        return pos;
+    for( int incr=0; incr<end; incr++) {
+      if (al.get(incr).equals(target))
+        return incr;
     }
     return -1;
   }//end linSearch()
@@ -35,38 +35,47 @@ public static int binSearchHelp (ArrayList al, int target){
   return binSearch (al, target, 0, al.size()-1);
 //recursive
   //return binSearchRecurs (al, target, 0, al.size()-1);
-}
+  }
   //return index of target, or -1 if not found
   public static int binSearch( ArrayList al, int target, int low, int high )
   {
     //set i to half of the length of arraylist (note that it floors decimals)
-
+    int numCompar = 0;
     int mid = (low + high)/2;  //initial arraylist length using int div returns ~1/2 as int
     //int high = al.size()-1; //initial high point uses length of list
     //int low = 0; //initial low point is 0
     //is target equal to midpoint element? then return
     if ((int)al.get(mid)==target){
+      numCompar++;
+      System.out.println("there were this many iterations" + numCompar);
       return mid;
     //if target is greater than element at item, mid + 1 becomes low, else it - 1 becomes high
     } else {
       while (low <= high){
         mid = (low + high)/2; //update usingnew high/low vals
         if (target == (int)al.get(mid)){  //check for matching val
+          numCompar++;
+          System.out.println("there were this many iterations" + numCompar);
           return mid;
         } else
         if (target > (int)al.get(mid)){  //if higher, reset low
+          numCompar++;
           low = mid + 1; //move lower upward of middle
         } else
         if (target < (int)al.get(mid)){  //if lower, reset high
+          numCompar++;
           high = mid - 1; //move higher below middle
         }
       }//end while
+      System.out.println("there were this many iterations" + numCompar);
       return -1;  //if not found, return neg 1
     }//end else
   }//end method
 
+
+//insertion sort
 public static ArrayList sortAlgorithm(ArrayList al){
-  ArrayList<Integer> tester = new ArrayList<Integer>();
+  //ArrayList<Integer> tester = new ArrayList<Integer>();
   for (int i = 0; i < al.size()-1; i++){
     for (int j = i + 1; j < al.size(); j++){
       if ((int)al.get(i)>(int)al.get(j)){
@@ -78,6 +87,57 @@ public static ArrayList sortAlgorithm(ArrayList al){
 } //end outer for
 return al; //return sorted array
 } //end method
+//selection sort
+
+public static void swapHelper (ArrayList al, int indexA, int indexB){
+  int temp = (int)al.get(indexA);
+  al.set(indexA, (int)al.get(indexB));
+  al.set(indexB, temp);
+//
+}
+
+public static ArrayList selectionSort(ArrayList al){
+//int smallestVal; //hold smallest val , not needed, used in testing.
+int swapInd; //index to swap
+int end = al.size();  //size of list
+int iHolder; //temp var to hold swap val
+for (int start = 0 ; start < end; start++){
+  swapInd = findSmallest(al, start, end); //find smallest index
+  System.out.println("findSmallest index is "+ swapInd); //checker
+    iHolder = (int)al.get(start);
+    al.set(start, (int)al.get(swapInd));
+    al.set(swapInd, iHolder);
+}
+return al;
+}
+
+public static void selectionSortAlg (ArrayList al){
+  //store size of list
+  int end = al.size();
+  //start at beginning, go to end,
+  for (int start = 0; start < end; start++){
+    int swapIndex = findSmallest(al, start, end);
+    swapHelper(al, start, swapIndex);
+  }
+}
+  /*  int setTo = findSmallest(al, bottom, al.size());
+    al.set(bottom,setTo);
+    bottom++;
+  }
+  for (int i = 0; i < al.size()-1; i++){
+    for (int j = i + 1; j < al.size(); j++){
+      if (bottomdata>(int)al.get(j)){
+        int holder = (int)al.get(j);
+        al.set(j,(int)al.get(i));
+        al.set(i, holder);
+    } //end if
+  } //end inner for
+} //end outer for
+bottom++;
+bottomdata = (int)al.get(bottom);
+} //end while loop
+return al; //return sorted array
+} //end method */
 
 /*public String toString(ArrayList al){
     String s = "*"; //opening of list
@@ -119,6 +179,7 @@ return al; //return sorted array
     return -1;
     }
 
+
 /*public static int binarySearchRec (ArrayList al, int target, int begin, int end){
   int mid = (begin + end/2);
   if ((int)al.get(mid) == target){
@@ -131,8 +192,6 @@ return al; //return sorted array
  return -1;
 } */
 
-
-
   // subgoal: recognize target found (and take what action?)
   // subgoal: recognize search space exhausted (and take what action?)
   // subgoal: recognize target in lower portion of range (and do what?)
@@ -141,8 +200,6 @@ return al; //return sorted array
   //nota bene: A helper method could be very useful.
   // Q: Why?
   // Q: What would the parameters be for such a method?
-
-
 
   //return ArrayList of random ints on range [lo,lo+hi)
   public static ArrayList prestoArrayListo(int numItems, int lo, int hi)
@@ -189,16 +246,106 @@ return al; //return sorted array
   //end prestoSortedArrayListo()
 
 }
+//modified findsmallest for expanded functionality
+//intake array start checkpoint and end checkpoint
+    public static int findSmallest(ArrayList al, int lo, int hi){
+      int index = 0; //start index at 0 by default but overwritten
+      int smallestVal = (int)al.get(lo); //initialize smallestval as the lowest index val
+      for (int i = lo; i < hi; i++){ //start at lowest and incrementing by one to highest index
+          if ((int)al.get(i)<=smallestVal) { //if the new number is less than or equal to lowest numbers to account for dupes
+            index = i; //then set index to new lowest number's index
+            smallestVal = (int)al.get(i); //then set smallest value to new smallest value
+          } //end if
+      } //end inner for
+        return index; //return smallest index
+    } //end method
+
+
+//tester method - used with swap to practice
+    public static int findSmallestVal(ArrayList al, int lo, int hi){
+      int index = 0;   //start index at 0 by default but overwritten
+      int smallestVal = (int)al.get(lo);//initialize smallestval as the lowest index val
+      for (int i = low; i < hi; i++){ //start at lowest and incrementing by one to highest index
+          if ((int)al.get(i)< smallestVal) {/if the new number is less than or equal to lowest numbers to account for dupe
+            index = i;
+            smallestVal = (int)al.get(i);
+        } //end if
+      } //end inner for
+        return smallestVal; //return smallest val
+    } //end method
+
   public static void main(String[] args) {
 
+    ArrayList salamander = new ArrayList();
+
+        //explicitly fill arraylist with intent to search for
+        // present and nonpresent values...
+        // generate an arraylist with an odd num of elems...
+        salamander.add(4);
+        salamander.add(8);
+        salamander.add(15);
+        salamander.add(16);
+        salamander.add(23);
+        System.out.println(salamander);
+
+        System.out.println("cacll to try to swap items 2 and 3");
+        swapHelper(salamander, 2, 3);
+
+        System.out.println("print to see if it worked 15 before 16");
+        System.out.println(salamander);
+
+        System.out.println("call to re-sort using sortAlgorithm");
+        sortAlgorithm(salamander);
+
+        System.out.println(salamander);
+
+        //search for target in the list
+        System.out.println(binSearchHelp(salamander, 8));  // 1
+        System.out.println(binSearchHelp(salamander, 15)); // 2
+        System.out.println(binSearchHelp(salamander, 16)); // 3
+
+        //search for target not in the list
+        System.out.println(binSearchHelp(salamander, 3)); // -1
+        System.out.println(binSearchHelp(salamander, 9)); // -1
+
+        //add another element, for an even num of elems
+        salamander.add(42);
+        System.out.println(salamander);
+        //search for target in the list
+        System.out.println(binSearchHelp(salamander, 8));  // 1
+        System.out.println(binSearchHelp(salamander, 15)); // 2
+        System.out.println(binSearchHelp(salamander, 16)); // 3
+
+        //search for target not in the list
+        System.out.println(binSearchHelp(salamander, 3)); // -1
+        System.out.println(binSearchHelp(salamander, 9)); // -1
 
 
-    ArrayList<Integer> tester = new ArrayList<Integer>();
+        ArrayList coqui = new ArrayList();
+        coqui = prestoArrayListo(15, 5, 25);
+        System.out.println("print generated list coqui below ");
+        System.out.println(coqui);
+
+    //test new functionality of find smallest method
+       int test = findSmallest(coqui, 0, 14);
+
+        System.out.println("smallest in coqui is " + test);
+
+
+
+//used both to test
+        System.out.println("print sorted list coqui below ");
+      //  selectionSort(coqui);
+        selectionSortAlg(coqui);
+        System.out.println(coqui);
+
+
+  /*  ArrayList<Integer> tester = new ArrayList<Integer>();
     tester.add(1);
     tester.add(3);
     tester.add(6);
     tester.add(9);
-    tester.add(15);
+    tester.a  dd(15);
     tester.add(18);
     tester.add(19);
     tester.add(25);
@@ -243,6 +390,14 @@ System.out.println("print tester sorted \n ");
     System.out.println("print bin search iter shldnt find" + binSearch(tester, 23,0,8));
     System.out.println("print bin search iter shld find " +binSearch(tester, 28,0,8));
 //
+    ArrayList smallTester = prestoArrayListo(10, 50, 100);
+    System.out.println("print smallest search " +findSmallest(smallTester, 0, 10));
+
+    System.out.println("print smallest search list for vis conf \n ");
+      for (int i = 0; i < smallTester.size();i++)
+      {
+          System.out.println(smallTester.get(i));
+      }
 
     sortAlgorithm(prestoArrayListo(10, 5, 20));
 
