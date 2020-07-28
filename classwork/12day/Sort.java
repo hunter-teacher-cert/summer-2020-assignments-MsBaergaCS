@@ -4,6 +4,35 @@ import java.util.*;
 
 public class Sort {
 
+//line 25 - linSearch - index search using linear search linSearch
+//line 34 - findSmallest - finds index of smallest using double for loop linear search comparison
+//line 48 - findSmallestVal - finds and returns smallest value in a list using double for loop linear
+//line 61 - slice - splits a given list into a *new* smaller list based on indexes given
+//line 71 - subgoals for mergeSort
+//line 84 - mergo - method to combine two lists into numerical order
+//line 116 - mergeSort - helper method overloaded
+//line 119 - mergeSort - oveloaded with helper method, merge sort algorithm, uses slice and mergo to recursively
+                  //split into smaller lists, merging them back together in order
+//line 137 - quickSortWork -  sorts arraylist, using pivot in the middle version
+//line 181 - quickSortTest - sorts Arrays using pivot in the middle version
+//line 229 - swapHelperArrarys - helper method swaps two values on an array using a temp variables
+//line 237 - quikSort - doesn't work all the time - keeping to explore
+//line 279 - sortAlgorithm sort algoithm using linear search and the same array is returned
+//line 295 - swapHelper - helper method swaps two values on an arraylist using temp variable
+//line 304 - selectionSort - selection sort using nonabstracted temp variable to hold value before swapping no helper method
+//line 322 - selectionSortAlg - selection sort using swapHelper method
+//line 332 - prestoSortedArrayListo - given methods to create a random assorted list
+//line 348 - prestoArrayListo - given method to create random unsorted list
+
+  public static int linSearch( ArrayList al, int target )
+  {
+    for( int pos=0; pos<al.size(); pos++) {
+      if (al.get(pos).equals(target))
+        return pos;
+    }
+    return -1;
+  }
+
   public static int findSmallest(ArrayList al, int lo, int hi){
     int index = 0; //start index at 0 by default but overwritten
     int smallestVal = (int)al.get(lo); //initialize smallestval as the lowest index val
@@ -40,6 +69,7 @@ public class Sort {
     return sub; //return new list
   }//end slice
 
+  //subgoals for mergeSort
   //setup variables
   //   make a new ArrayList
   //   indices for each input
@@ -102,79 +132,151 @@ public class Sort {
 
 
      return mergo(mergeSort(merg1), mergeSort(merg2));
+   }
+
+//works all the time
+          public static void quickSortWork(ArrayList <Integer> al, int low, int high) {
+            //check if the values work
+          if (al.size() == 0){
+      			return;
+          }
+          if(al == null){
+            return;
+          }
+            //if we've gone out of bounds return
+      		if (low >= high){
+            return;
+          }
+
+      		// pick the pivot starting at the middle,
+      		int middle = low + (high - low) / 2; //increase by adding low to the difference of low and high /2 to increment upward from bottom by half
+      		int pivot = (int)al.get(middle);
+      		// make left < pivot and right > pivot
+      		int lowIndex = low;
+          int hiIndex = high;
+      		while (lowIndex <= hiIndex) {
+      			while (al.get(lowIndex) < pivot) {
+      				lowIndex++;
+      			}
+
+      			while (al.get(hiIndex) > pivot) {
+      				hiIndex--;
+      			}
+
+      			if (lowIndex <= hiIndex) {
+              swapHelper(al, lowIndex, hiIndex);
+      				lowIndex++;
+      				hiIndex--;
+      			}
+      		}
+
+      		// recursively sort two sub parts
+      		if (low < hiIndex){
+      			quickSortWork(al, low, hiIndex);
+            }
+      		if (high > lowIndex){
+      			quickSortWork(al, lowIndex, high);
+      	}
+        }
+//works with Arrays
+      public static void quickSortTest(int[] al, int low, int high) {
+        if (al.length == 0){
+          return;
+        }
+        if(al == null){
+          return;
+        }
+  if (low >= high){
+    return;
+  }
+
+
+  // pick the pivot
+  int middleNum = low + (high - low) / 2;
+  int pivot = al[middleNum];
+
+  // make left < pivot and right > pivot
+  int lowIndex = low;
+  int hiIndex = high;
+  while (lowIndex <= hiIndex) {
+    while (al[lowIndex] < pivot) {
+      lowIndex++;
     }
 
-/*public static ArrayList<Integer> addQuick(ArrayList al) {
-  int pivot = 0;
-  for (int i = 0; i < al.size()-1; i++){
-    if (pivot<al.get(i)){
-      aboveP.add(al.get(i));
+    while (al[hiIndex] > pivot) {
+      hiIndex--;
     }
+
+    if (lowIndex <= hiIndex) {
+      swapHelperArrays(al, lowIndex, hiIndex);
+      hiIndex--;
+      lowIndex++;
+    }
+  }
+
+  // recursively sort two sub parts
+  if (low < hiIndex){
+    quickSortTest(al, low, hiIndex);
+  }
+
+
+  if (high > lowIndex){
+    quickSortTest(al, lowIndex, high);
+  }
+
 }
-} */
 
-public static ArrayList<Integer> quikSort(ArrayList<Integer> al){
-  if (al.size()<=1){
+//swap helper for the quick sort above for arrays (vs arraylist version above) after this push to the github and work on trees
+public static void swapHelperArrays (int[] al, int indexA, int indexB){
+  int temp = al[indexA]; //hold value to switch in temp position
+  al[indexA]=al[indexB]; //rewite the oiginal position with swap value
+  al[indexB]=temp; //take original value from temp and overwrite swap values oiginal position
+}//close method
+
+//mostly works with
+//occassional errors
+public static ArrayList<Integer> quikSort(ArrayList<Integer> al, int bot, int top){
+  if (top-bot<=1){
     return al;
   }
-  int pivot = (int)al.get(al.size()-1);
-  System.out.println(pivot);
-  ArrayList<Integer> belowP = new ArrayList<Integer>(); //creates two lists
-  ArrayList<Integer> aboveP = new ArrayList<Integer>();
-  for (int i = 0; i < al.size()-1; i++){
-    if (pivot<al.get(i)){
-      aboveP.add(al.get(i));
-    } else if (pivot>al.get(i)){
-      belowP.add(al.get(i));
+  int rInd = top;
+  System.out.println(" this is the r index " + rInd);
+  int lInd = bot;
+  System.out.println(" this is the L index " + lInd);
+  int middle = bot + ((top - bot) / 2);
+  System.out.println(" this is the middle " + middle);
+  int pivot = (int)al.get(middle); //get pivot
+  System.out.println(" this is the pivot " + pivot);
+  while (lInd <= rInd){
+    System.out.println(" left Ind " + lInd + " is less than right Ind " + rInd + " so we continue ");
+    while (al.get(lInd)<pivot){
+      System.out.println(" the item at left Ind " + lInd + " is " + al.get(lInd) + " it is less than pivot " + pivot +" so we increment rInd by one ");
+      lInd++;
+      System.out.println(" r index increases to " + rInd + " and we continue ");
     }
-    return mergo(quikSort(belowP),quikSort(aboveP));
-}
-return mergo(quikSort(belowP),quikSort(aboveP));
+    while (al.get(rInd)>pivot){
+      System.out.println(" the item at right Ind " + rInd + " is " + al.get(rInd) + " it is greater than pivot " + pivot +" so we increment rInd by one ");
+      rInd--;
+      System.out.println(" l index increases to " + lInd + " and we continue ");
+  }
+  if(lInd<=rInd){
+    System.out.println(" left Ind " + lInd + " is less than or equal to " + rInd + "  so we swap the two and increment rInd by neg one and l plus one ");
+    swapHelper(al, rInd, lInd);
+    rInd--;
+    lInd++;
+  }
+  }
+  if(bot<rInd){
+
+    quikSort(al,bot, rInd);
+  }
+  if(top>lInd){
+    quikSort(al, lInd, top);
+  }
+  return al;
 }
 
-//pick a pivot, last elemenet
-//compare each element to the pivot
-//if the left index is > pivot and right < pivot, swap
-//if the left index is > pivot and right > pivot, increment right
-//if the left index is < pivot and right < pivot, increment left
-//if the left index is < pivot and right > pivot, increment both
-public static ArrayList<Integer> quickSort(ArrayList<Integer> al){
-
-  int pivot = (int)al.get(al.size()-1);
-  System.out.println("pivot is " + pivot);
-  int leftInd = 0;
-  System.out.println("leftInd is " + leftInd);
-  int rightInd = (int)al.size()-2;
-  System.out.println("right index is " + rightInd);
-while (leftInd < rightInd){
-  if (al.get(leftInd) > pivot && al.get(rightInd)<pivot){
-    System.out.println("swap " + al.get(leftInd) + " and "+ al.get(rightInd));
-    swapHelper(al, leftInd, rightInd);
-    leftInd++;
-    rightInd--;
-    System.out.println("swap and increment left up and right down");
-  }
-  if (al.get(leftInd)>pivot && al.get(rightInd)>pivot){
-    System.out.println(al.get(leftInd)+ " is greater than " + pivot " and " + al.get(rightInd) + " is greater than "+ pivot + "");
-    rightInd--;
-    System.out.println("no swap, decrement right down");
-  }
-  if (al.get(leftInd)<pivot && al.get(rightInd)<pivot){
-    System.out.println(al.get(leftInd)+ " is less than " + pivot " and " + al.get(rightInd) + " is less than "+pivot);
-    System.out.println("no swap, increment left up");
-    leftInd++;
-  }
-  if (al.get(leftInd)<pivot && al.get(rightInd)>pivot){
-    System.out.println(al.get(leftInd)+ " is less than " + pivot " and " + al.get(rightInd) + " is greater than "+  pivot);
-    System.out.println("no swap, increment left up and right down");
-    leftInd++;
-    rightInd--;
-  }
-}
-System.out.println("no swap, increment left up");
-swapHelper(al, leftInd, pivot)
-return quickSort;
-}
+//sort algoithm using linear search and the same array is returned
 public static ArrayList sortAlgorithm(ArrayList al){
   //ArrayList<Integer> tester = new ArrayList<Integer>();
   for (int i = 0; i < al.size()-1; i++){
@@ -305,9 +407,36 @@ public static void main(String[] args) {
   testQuik = prestoArrayListo(10,5,25);
   //print out random list fr comparison
   System.out.println(testQuik);
+  //test whether int is needed fo boolean comparison
+  System.out.println("is item 1 greater than item 4 " );
+
+  if (testQuik.get(1)>testQuik.get(4)){
+    System.out.println("true");
+  } else {
+    System.out.println("false");
+  }
   //attempt to call quicksort
-  quickSort(testQuik);
-  System.out.println("test print of quickSort algo");
-  System.out.println(testQuik);
+  //quickSort(testQuik);
+  //System.out.println("test print of quickSort algo");
+  //System.out.println(testQuik);
+//test quiksort algo
+  ArrayList<Integer> testQuikOther = new ArrayList<Integer>();
+  testQuikOther = prestoArrayListo(10,5,25);
+  System.out.println(testQuikOther);
+  System.out.println("above is original list below is new quiksort algo ");
+  //quickSortAlg(testQuikOther, 0, 9);
+  //quickSortHelper(testQuikOther);
+  //quickSort(testQuikOther, 0, 9);
+  //quikSort(testQuikOther, 0, 9);
+  //System.out.println(quikSort(testQuikOther, 0, 9));
+  quickSortWork(testQuikOther, 0, 9);
+  for(int i=0; i < testQuikOther.size(); i++){
+             System.out.println( testQuikOther.get(i) );
+           }
+
+  int[] newArray = new int [] {3,2,6,1,39,2,25,3,53,2};
+  quickSortTest(newArray, 0, 9);
+  System.out.println(Arrays.toString(newArray));
+
 }
 }
