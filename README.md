@@ -7,7 +7,7 @@
 [Assignment: Conway's Game of Life implementation](/classwork/2day/gameOfLife.java)  
 Assignment: Classes with [Time](/classwork/3day/Time.java) and [Date](/classwork/3day/Date.java)  
 [Assignment: Creating a SuperArray class (ArrayList implementation)](/classwork/4day)  
-[Assignment: Pointer Diagram Lab]  
+[Assignment: Pointer Diagram Lab](/classwork/keysToSuccess)  
 [Assignment: Linked List data structure implementation](classwork/5-6day)  
 [Assignment: Stack implementation](classwork/8day)  
 [Assignment: linear and binary search implementaiton and comparison](classwork/10day)  
