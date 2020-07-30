@@ -2,7 +2,7 @@
 * First name: Lisa
 * Github username: MsBaergaCS
 
-[Assignment: Recursion lab](classwork/0day/dayZero.java)
+[Assignment: Recursion lab](classwork/0day/dayZero.java)  
 [Assignment: 2D Array lab](classwork/1day/dayNumOne.java)
 [Assignment: Conway's Game of Life implementation](classwork/1day/gameOfLife.java)
 [Assignment: Classes with [Time](classwork/3day/Time.java) and [Date](classwork/3day/Date.java)
