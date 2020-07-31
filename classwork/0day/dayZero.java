@@ -83,17 +83,27 @@ public class dayZero {
   }
 // sums the total of an Array btwn two specified elements
 
-  /*public static int recursiveSumBtwn (int [] arr, int b, int c) {   //recusive
-    int sumTotal = 0;
-    if (b == c){
-      return arr[b];
-    }
-      sumTotal = sumTotal + arr[i];
-    }
-    //System.out.println(sumTotal);
-    return sumTotal;
+  public static int recursiveSumBtwn (int [] arr, int b, int c) { //takes in an array and two item #s
+    if (b == c){      //checks if items are equal,
+      return arr[b];  //if so, just return that element value
+    } else {            //condition not met
+      int [] newA = sliceArray(arr, b, c);    //uses slice array helper to generate a new array of
+      return recursiveSum(newA);            //a size determined by and including the values between those given elements
+    }                                     //using that new array, uses recursiveSum from above to fulfill recursion reqs ;)
+  }
 
-  }*/
+  public static int[] sliceArray(int[] al, int lo, int hi) {
+      int sizeOfList = (hi-lo)+1; //determined size of list by subtracting lo from hi and adding one to account for the element
+      int j = 0;      //sets second counter to 0, to increment new array                              //that would be lost in subtracting
+      int [] sub = new int[sizeOfList]; //creates new array to returrn based on size calc above
+      for (; lo <= hi; lo++) { //iterates thru list starting at lower # and including higher
+        //for(int j = 0; j < sizeOfList; j++){
+          sub[j]=al[lo];  //sets new list using counter and first using number at low, and incrementing each time
+          j++;    //increments new list counter
+        //}
+      }//copy
+      return sub;   //return the new list
+    }//slice
 
 
 
@@ -114,12 +124,18 @@ System.out.print("the factorial of " + 5 + " is ");
       listSum[i]= (int)(Math.random()*100 + 1);
     }
     //tests recursive sum
+    System.out.println("this prnts a test of listsum my random list");
     System.out.println(Arrays.toString(listSum));
 
     //recursiveSum(listSum, 9);
+      System.out.println("this prnts a test of listsum my list list sum method ");
     System.out.println(recursiveSum(listSum));
 
-    //System.out.println(recursiveSumBtwn(listSum, 1, 3));
+  System.out.println("this prnts a test of my slice on list above");
+    System.out.println(sliceArray(listSum, 1, 3));
+
+  System.out.println("this prnts a test of a summer btwn two given items on my list");
+    System.out.println(recursiveSumBtwn(listSum, 1, 3));
   }
 
 }
