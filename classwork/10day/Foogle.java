@@ -19,18 +19,18 @@ import java.util.*;
 public class Foogle
 {
 
-  //  <YOUR DESCRIPTIVE COMMENT HERE>
+  //  checks for target # retuns item # if found
   public static int foo( ArrayList al, int target )
   {
     for( int pos=0; pos<al.size(); pos++) {
       if (al.get(pos).equals(target))
         return pos;
     }
-    return -1;
+    return -1;  //else -1
   }//end foo()
 
 
-  //  <YOUR DESCRIPTIVE COMMENT HERE>
+  //  gens a new list of a given size full of  random #s
   public static ArrayList gizmo(int numItems, int lo, int hi)
   {
     ArrayList retArr = new ArrayList();
@@ -51,14 +51,14 @@ public class Foogle
   {
     ArrayList retArr = new ArrayList();
 
-    // <YOUR DESCRIPTIVE COMMENT HERE>
+    //checks - if no items on list, give bak empty list
     if ( numItems<1 )
       return retArr;
 
-    // <YOUR DESCRIPTIVE COMMENT HERE>
+    // adds to item a random int
     retArr.add( (int)(lo * Math.random()) );
 
-    // <YOUR DESCRIPTIVE COMMENT HERE>
+    // creates a specified item list of a size input above
     for(int i=1; i<numItems; i++) {
       //System.out.println(i);  //diagnostic under-the-hood view
       //retArr.add( Math.random() ); // [0,1)
@@ -66,8 +66,8 @@ public class Foogle
       //retArr.add( (int)(hi * Math.random()) ); // [0,?)
       //retArr.add( lo + (int)(hi * Math.random()) ); // [?,?)
       //System.out.println(retArr.get(i-1));  //diag.
-      retArr.add( (int)retArr.get(i-1)
-                  + lo + (int)(hi * Math.random()) );
+      retArr.add( (int)retArr.get(i-1)  //uses incrementation to make sure numbers on list are sorted
+                  + lo + (int)(hi * Math.random()) ); //but still random
     }
 
     return retArr;
