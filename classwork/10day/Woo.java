@@ -3,6 +3,7 @@ import java.util.*;
 
 public class Woo
 {
+//this stuff (linear binary sorted lists, etc) is all in Boogle and BoogleS in days 10 and 11 folders
 
   //return index of first occurence of target, or -1 if not found
   public static int linSearch( ArrayList al, int target )
