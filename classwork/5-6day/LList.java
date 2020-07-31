@@ -165,11 +165,11 @@ public class LList {
 
   public int nodeCount(){
     Node currentNode = head;
-    while (currentNode != null){
-      length += 1;
-      currentNode = currentNode.getNext();
+    while (currentNode != null){ //checks for null value, which means it has reached the end of the linked list
+      length += 1;              //increments
+      currentNode = currentNode.getNext(); //moves to next node
     } //end while
-    return length;
+    return length;    //gives length once next node is null / we are at end
   } //end method
 
 } //end class
