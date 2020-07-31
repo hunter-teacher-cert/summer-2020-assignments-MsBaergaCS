@@ -26,7 +26,7 @@ public class MyStack {
 
   }*/
 
-      public void MyStack(){
+      public MyStack(){
           // add constructor code
           Node newStack = new Node();
           this.head = null;

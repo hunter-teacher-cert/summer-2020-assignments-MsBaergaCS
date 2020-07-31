@@ -16,6 +16,19 @@ public class StackDriver{
     return s.equals(reverse(s));
     }
 
+
+  //messy is palindrome try
+
+  public static boolean isPalindromeM(String s){
+    String check = reverse(s);
+    System.out.println(reverse(s));
+    return true;
+  }
+  public static boolean parenCheck (String s){
+
+    return true;
+  }
+
   public static void main(String[] args) {
     MyOtherStack thisStack =  new MyOtherStack();
     System.out.println(thisStack);

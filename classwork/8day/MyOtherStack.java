@@ -49,7 +49,7 @@ public class MyOtherStack {
   }
 //will return the character at index i in String s (0-based).
 
-/*public static String reverse(String s){
+public static String reverse(String s){
   MyOtherStack rev =  new MyOtherStack(); //create new stack
   String printRev = ""; //initialize string var
   for (int i = 0; i< s.length(); i++){ //checks in a for loop that iterates thru whole string
@@ -63,7 +63,7 @@ public class MyOtherStack {
 
 public static boolean isPalendrome(String s){
   return s.equals(reverse(s)); //tests if string s is equal to reverse of s using reverse method
-}*/
+}
 
 
 } //end method
