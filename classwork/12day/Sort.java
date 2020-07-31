@@ -26,7 +26,7 @@ public class Sort {
 
   public static int linSearch( ArrayList al, int target )
   {
-    for( int pos=0; pos<al.size(); pos++) {
+    for( int pos=0; pos<al.size(); pos++) { //comments are better done for this method in Boogle
       if (al.get(pos).equals(target))
         return pos;
     }
@@ -137,10 +137,10 @@ public class Sort {
 //works all the time
           public static void quickSortWork(ArrayList <Integer> al, int low, int high) {
             //check if the values work
-          if (al.size() == 0){
+          if (al.size() == 0){ //is list empty?
       			return;
           }
-          if(al == null){
+          if(al == null){ //is list nonexistant?
             return;
           }
             //if we've gone out of bounds return
@@ -154,31 +154,31 @@ public class Sort {
       		// make left < pivot and right > pivot
       		int lowIndex = low;
           int hiIndex = high;
-      		while (lowIndex <= hiIndex) {
-      			while (al.get(lowIndex) < pivot) {
-      				lowIndex++;
+      		while (lowIndex <= hiIndex) { //are we within bounds?
+      			while (al.get(lowIndex) < pivot) { //is lower index less than pivot? it should be
+      				lowIndex++;                         //keep incrementing
       			}
 
-      			while (al.get(hiIndex) > pivot) {
-      				hiIndex--;
+      			while (al.get(hiIndex) > pivot) { //if the value of the highindex is still above the pivot,
+      				hiIndex--; //we're good, nothing to switch, so decrement
       			}
 
-      			if (lowIndex <= hiIndex) {
-              swapHelper(al, lowIndex, hiIndex);
-      				lowIndex++;
-      				hiIndex--;
+      			if (lowIndex <= hiIndex) { //still within bounds but lower is above and higher is below?
+              swapHelper(al, lowIndex, hiIndex); //swap values
+      				lowIndex++; //increment
+      				hiIndex--; //decrement
       			}
-      		}
+      		} //exit if we no longer within bounds
 
       		// recursively sort two sub parts
       		if (low < hiIndex){
-      			quickSortWork(al, low, hiIndex);
+      			quickSortWork(al, low, hiIndex); //use lowest and highest to sort sub recursively
             }
       		if (high > lowIndex){
-      			quickSortWork(al, lowIndex, high);
+      			quickSortWork(al, lowIndex, high); //use lowest and highest of other side to sort recursively
       	}
         }
-//works with Arrays
+//same but works with Arrays
       public static void quickSortTest(int[] al, int low, int high) {
         if (al.length == 0){
           return;
@@ -186,9 +186,9 @@ public class Sort {
         if(al == null){
           return;
         }
-  if (low >= high){
-    return;
-  }
+        if (low >= high){
+            return;
+        }
 
 
   // pick the pivot
@@ -234,7 +234,7 @@ public static void swapHelperArrays (int[] al, int indexA, int indexB){
 }//close method
 
 //mostly works with
-//occassional errors
+//occassional errors i kept because it annoyed me but didnt have time to figure it out
 public static ArrayList<Integer> quikSort(ArrayList<Integer> al, int bot, int top){
   if (top-bot<=1){
     return al;
@@ -292,7 +292,7 @@ public static ArrayList sortAlgorithm(ArrayList al){
 } //end method
 //selection sort
 
-//swaper helper algorithm
+//swaper helper algorithm commented better elsewhere i think in Boogle?
 public static void swapHelper (ArrayList al, int indexA, int indexB){
   int temp = (int)al.get(indexA);
   al.set(indexA, (int)al.get(indexB));
@@ -308,7 +308,7 @@ public static ArrayList selectionSort(ArrayList al){
   int iHolder; //temp var to hold swap val
   for (int start = 0 ; start < end; start++){
     swapInd = findSmallest(al, start, end); //find smallest index
-    System.out.println("findSmallest index is "+ swapInd); //checker
+  //  System.out.println("findSmallest index is "+ swapInd); //checker
     iHolder = (int)al.get(start);
     al.set(start, (int)al.get(swapInd));
     al.set(swapInd, iHolder);
@@ -421,7 +421,7 @@ public static void main(String[] args) {
   //System.out.println(testQuik);
 //test quiksort algo
   ArrayList<Integer> testQuikOther = new ArrayList<Integer>();
-  testQuikOther = prestoArrayListo(10,5,25);
+  testQuikOther = prestoArrayListo(10000,5,25);
   System.out.println(testQuikOther);
   System.out.println("above is original list below is new quiksort algo ");
   //quickSortAlg(testQuikOther, 0, 9);
@@ -429,10 +429,17 @@ public static void main(String[] args) {
   //quickSort(testQuikOther, 0, 9);
   //quikSort(testQuikOther, 0, 9);
   //System.out.println(quikSort(testQuikOther, 0, 9));
-  quickSortWork(testQuikOther, 0, 9);
-  for(int i=0; i < testQuikOther.size(); i++){
-             System.out.println( testQuikOther.get(i) );
-           }
+
+  //for(int i=0; i < testQuikOther.size(); i++){
+  //           System.out.println( testQuikOther.get(i) );
+  //         }
+//adding time testing
+  long start = System.currentTimeMillis();
+  quickSortWork(testQuikOther, 0, 9999);
+  long elapsed = System.currentTimeMillis() - start;
+  System.out.println("Elapsed Time: " + elapsed);
+
+//end test apparatus
 
   int[] newArray = new int [] {3,2,6,1,39,2,25,3,53,2};
   quickSortTest(newArray, 0, 9);
