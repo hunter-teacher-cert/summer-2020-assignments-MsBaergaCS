@@ -1,6 +1,6 @@
 public class LList {
 
-  //instance variable
+  //instance variable 
   private Node head;
   private int length = 0; //tracks additions & removals
   //constructor

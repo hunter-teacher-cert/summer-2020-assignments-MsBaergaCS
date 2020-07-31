@@ -24,7 +24,7 @@ public class Node {
 
   //getters
   public String getData (){
-    return data;        
+    return data;
   }
 
   public Node getNext (){
