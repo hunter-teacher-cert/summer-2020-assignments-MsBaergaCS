@@ -6,25 +6,25 @@ public class Node {
   private Node next;
 
 //constructors
-  public Node (String data, Node next){
-    this.next =next;
-    this.data = data;
+  public Node (String data, Node next){ //creates an instance of a node
+    this.next =next;      //points to next node
+    this.data = data;     //takes in data
   }
 
-  public Node (String data){
-    this.next = null;
-    this.data = data;
+  public Node (String data){    //instance but takes in data only
+    this.next = null;     //no next node
+    this.data = data;     //sets data
   }
 
   //this is why the final 'item' on a linked list returns 0
   public Node(){
-    this.next = null;
+    this.next = null;     //creates empty node
     this.data = "";
   }
 
   //getters
   public String getData (){
-    return data;
+    return data;        
   }
 
   public Node getNext (){
