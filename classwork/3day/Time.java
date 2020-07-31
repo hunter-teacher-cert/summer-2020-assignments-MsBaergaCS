@@ -1,7 +1,7 @@
 
 public class Time {
 
-    private int hour;
+    private int hour;     //similar to date - an obj that sets the time
     private int minute;
     private double second;
 
@@ -9,10 +9,10 @@ public class Time {
 //creates constructor
 //no return value
 //no parameters
-    public Time() {
+    public Time() {     //similar but uses two ints fo hour and min
       this.hour = 0;
       this.minute = 0;
-      this.second = 0.0;
+      this.second = 0.0;    //but a double for seconds
     }
 
 //allows setting of time using parameter values to define values of instance variables
@@ -92,7 +92,7 @@ public boolean equals(Time that) {
         && this.second == that.second;
 }
 
-//actually modifies existing code
+//actually modifies existing code to add time
 public void increment(double seconds) {
     this.second += seconds;
     while (this.second >= 60.0) {
