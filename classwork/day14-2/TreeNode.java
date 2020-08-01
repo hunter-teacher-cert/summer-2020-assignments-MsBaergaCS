@@ -43,4 +43,9 @@ public class TreeNode{
     public TreeNode getRight(){
 	return right;
     }
+
+    public TreeNode getRoot()
+      {
+        return root;
+      }
 }
