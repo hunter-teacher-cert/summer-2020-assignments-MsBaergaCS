@@ -200,52 +200,51 @@ public void delete(int key){
 	// keep on piggy backing
 	// until we find node or next is null and we have reached the end
 	// and the key isn't present
-	while (front != null && front.getData() != key ){
-	    if (front.getData() < key){
-		trailer = front;
-		front = front.getRight();
-	    } else {
-		trailer = front;
-		front = front.getLeft();
+	while (front != null && front.getData() != key ){ //check if we havent reached the front and we havent found the key
+	    if (front.getData() < key){                // keep going if the data in front is less, go right
+		trailer = front;                            //move foward
+		front = front.getRight();           //move right
+  } else {                             //otherwise if it is bigger
+		trailer = front;                        //move forward
+		front = front.getLeft();          //but left
 	    }
 	}
-
 	// if the key wasn't in the tree
-	if (front == null){
-	    return;
-	}
+	if (front == null){  //if we get past the above - the front is either no longer null
+	    return;        //in which case this will cause us to exit
+	}              //or....
 
 	// if we made it to this point, we haven't not found it (line 214)
   //and it is now equal since we've escaped the while on 203 but not been returned
 	// the front points to the node we want to delete
 	// and trailer points to the one above it
 
-	// case 1 -- if the node we want to delete is a leaf
+	// option 1 -- if the node we want to delete is a leaf
 	if (front.getLeft() == null &&
 	    front.getRight() == null) {
 // repoint front's parent to null
         trailer.setLeft(null);
         trailer.setRight(null);
+
       }
-	        //if there is only one child (i.e one of either getRight or getLeft are not null)
- else if (front.getLeft.getData() != null || front.getRight.getData() != null) {
+	        //option 2 if there is only one child (i.e one of either getRight or getLeft are not null)
+ else if (front.getLeft() != null || front.getRight() != null) {
  // repoint front's parent to front's child depending on side needed
-   if (front.getLeft() != null){
-     trailer.setLeft(front.getLeft());
+   if (front.getLeft() != null){ //if left is not null, the right must be (since only one is)
+     trailer.setLeft(front.getLeft());  //set the trailer to the one in front, cutting out node fo deletion
    } else {
-     trailer.setRight(front.getRight());
+     trailer.setRight(front.getRight()); //set the trailer to the value of the right node, thereby cutting out node
    } //end else
  } //end else if statement
 	 else {
 	    // front has two children
 	  //  TreeNode temp = front;
 	    // find the node with the smallest value
-      TreeNode minNodeR = minElement(front);
+      TreeNode minNodeR = minElement(front); //find the smallest value
 	    // on fronts right subtree
       //front.setData(getLeft.getData());
-      front.setData(minNodeR.getData());
+      trailer.setData(minNodeR.getData()); //set the trailer to the node in front that is smallest
 	    // and replace front node with it.
-
 	    }
 }
 
