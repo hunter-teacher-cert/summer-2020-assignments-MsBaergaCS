@@ -4,6 +4,13 @@ import java.util.*;
 
 //attempt two
 
+
+//search method - line
+//traverse method 1 -  line
+//traverse method 1 help - line
+//insert method - line
+
+
 public class BSTree {
 
   //TreeNode as root
@@ -60,24 +67,7 @@ public class BSTree {
       return search(root.getRight(), key);
     } */
 
-private void traverse (TreeNode current){
-  if (root == null){
-    return;
 
-  }
-  //print current node
-System.out.print(current.getData()+", ");
-  //print out recursively the left subtree
-traverse(current.getLeft());
-  //print out recursively the right subtree
-traverse(current.getRight());
-}
-
-
-public void traversal(){
-  traverse(root);
-  System.out.println();
-}
 
 //uses search guts to develop insert method
     public void insert (int key){
@@ -132,7 +122,115 @@ public void traversal(){
 	root.getRight().setRight(t);
 
 	}
+  private void traverse (TreeNode current){
+    if (current == null){ //empty then nothing to traverse
+      return;
 
+    }
+
+    //print out recursively the left subtree
+  traverse(current.getLeft());
+  //print data
+  System.out.print(current.getData()+", ");
+    //print out recursively the right subtree
+  traverse(current.getRight());
+  }
+
+
+  public void traverse(){
+    traverse(root);
+    System.out.println("");
+  }
+
+  public void postTraverse(TreeNode current){
+    if (current == null){ //empty then nothing to traverse
+      return;
+    }
+  //left side traverse
+  postTraverse(current.getLeft());
+  //right side traverse
+  postTraverse(current.getRight());
+  //prints data
+  System.out.print(current.getData()+", ");
+} //end method
+
+public void postTraverse(){
+  postTraverse(root);
+  System.out.println("");
+}
+
+public void preTraverse(TreeNode current){
+  if (current == null){ //empty then nothing to traverse
+    return;
+  }
+  //prints data first, then traverse
+  System.out.print(current.getData()+", ");
+  //left side traverse
+  postTraverse(current.getLeft());
+  //right side traverse
+  postTraverse(current.getRight());
+
+} //end method
+
+public void preTraverse(){
+preTraverse(root);
+System.out.println("");
+}
+
+public void delete(int key){
+
+	// if the tree is empty, nothing to delete
+	if (root==null){
+	    return;
+	}
+
+
+	// find the node that we want to delete
+	// and the node above it using piggybacking
+	TreeNode front = root;
+	TreeNode trailer = root;
+
+	// do the piggyback loop
+	// until we either find the node or null
+	// if the key isn't present
+	while (front != null && front.getData() != key ){
+	    if (front.getData() < key){
+		trailer = front;
+		front = front.getRight();
+	    } else {
+		trailer = front;
+		front = front.getLeft();
+	    }
+	}
+
+	// if the key wasn't in the tree
+	if (front == null){
+	    return;
+	}
+
+	// if we get here
+	// front points to the node we want to delete
+	// and trailer points to the one above it
+
+	// case 1 -- the node we want to delete is a leaf
+	if (front.getLeft() == null &&
+	    front.getRight() == null) {
+
+	    // repoint front's parent to null
+	} else if (true /* check to see if front has one child */){
+	    // repoint front's parent to front's child
+	} else {
+	    // front has two children
+	    //
+	    // find the node with the largest value
+	    // on fronts left subtree
+	    // and replace front with it.
+	    }
+
+	}
+    
+
+//gets root of current tree
   public TreeNode getRoot()
     {
       return root;
