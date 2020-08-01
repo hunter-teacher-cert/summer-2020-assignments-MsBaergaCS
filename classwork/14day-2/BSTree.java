@@ -180,9 +180,9 @@ preTraverse(root);
 System.out.println("");
 }
 
-public void delete (TreeNode delete){
-  root = delete(root, delete);
-}
+//public void delete (TreeNode delete){
+//  root = delete(delete);
+//}
 
 public void delete(int key){
 
@@ -222,35 +222,50 @@ public void delete(int key){
 
 	// case 1 -- if the node we want to delete is a leaf
 	if (front.getLeft() == null &&
-	    front.getRight() == null)
-	    // repoint front's parent to null
-      trailer.setLeft(null);
-      trailer.setRight(null);
-      //if there is only one child (i.e one of either getRight or getLeft are not null)
-	} else if ((front.getLeft() != null) || (front.getRight() != null)){
-	    // repoint front's parent to front's child
-      if (front.getLeft() != null){
-        trailer.setLeft(front.getLeft());
-      } else {
-        trailer.setRight(front.getRight());
+	    front.getRight() == null) {
+// repoint front's parent to null
+        trailer.setLeft(null);
+        trailer.setRight(null);
       }
-	} else {
+	        //if there is only one child (i.e one of either getRight or getLeft are not null)
+ else if (front.getLeft.getData() != null || front.getRight.getData() != null) {
+ // repoint front's parent to front's child depending on side needed
+   if (front.getLeft() != null){
+     trailer.setLeft(front.getLeft());
+   } else {
+     trailer.setRight(front.getRight());
+   } //end else
+ } //end else if statement
+	 else {
 	    // front has two children
-	    TreeNode temp = trailer;
-	    // find the node with the largest value
-	    // on fronts left subtree
-	    // and replace front with it.
-	    }
+	  //  TreeNode temp = front;
+	    // find the node with the smallest value
+      TreeNode minNodeR = minElement(front);
+	    // on fronts right subtree
+      //front.setData(getLeft.getData());
+      front.setData(minNodeR.getData());
+	    // and replace front node with it.
 
-	}
+	    }
+}
+
 //find smallest in a tree
-  public static TreeNode minimumElement(TreeNode root) {
+  public static TreeNode minElement(TreeNode root) {
 		if (root.getLeft() == null)
 			return root;
 		else {
-			return minimumElement(root.getLeft());
+			return minElement(root.getLeft());
 		}
 	}
+
+  //find largest in a tree
+    public static TreeNode maxElement(TreeNode root) {
+  		if (root.getRight() == null)
+  			return root;
+  		else {
+  			return maxElement(root.getRight());
+  		}
+  	}
 //gets root of current tree
   public TreeNode getRoot()
     {
