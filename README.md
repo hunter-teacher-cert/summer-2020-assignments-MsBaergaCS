@@ -14,7 +14,9 @@ Assignment: Classes with [Time](/classwork/3day/Time.java) and [Date](/classwork
 [Assignment: Selection sort implementation](classwork/12day/Sort.java)  
 [Assignment: Merge sort implementation](classwork/12day/Sort.java)  
 [Assignment: Bonus: Quick Sort](classwork/12day/Sort.java)  
-[Assignment: Binary Search Tree implementation](classwork/14day-2)  
+[Assignment: Binary Search Tree implementation](classwork/14day-2)
+
+Note: KtS can be found within File within [classwork folder](classwork/keysToSuccess/) and also several within [BTS Day 14 folder](classwork/day14-2)
 
 * Resources:
 - [[https://introcs.cs.princeton.edu/java/][CS - Sedgewick / Wayne - class text]]
